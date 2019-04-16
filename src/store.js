@@ -7,11 +7,19 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     user: null,
+    passages: [],
+    passage: null
   },
   mutations: {
     setUser(state, user) {
       state.user = user;
     },
+    setPassages(state, passages) {
+      state.passages = passages;
+    },
+    setPassage(state, passage) {
+      state.passage = passage;
+    }
   },
   actions: {
     async register(context, data) {
@@ -49,6 +57,33 @@ export default new Vuex.Store({
       } catch (error) {
         return "";
       }
-    }
+    },
+    async getAllPassages(context) {
+      try {
+        let response = await axios.get("/api/passages/all");
+        context.commit('setPassages', response.data);
+        return "";
+      } catch (error) {
+        return "";
+      }
+    },
+    async getMyPhotos(context) {
+      try {
+        let response = await axios.get("/api/passages");
+        context.commit('setPassages', response.data);
+        return "";
+      } catch (error) {
+        return "";
+      }
+    },
+    async getPassageById(context, passageId) {
+      try {
+        let response = await axios.get("/api/passages/" + passageId);
+        context.commit('setPassage', response.data);
+        return "";
+      } catch (error) {
+        return "";
+      }
+    },
   }
 })

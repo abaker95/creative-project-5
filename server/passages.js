@@ -57,7 +57,7 @@ app.post('/api/passages/add',auth.verifyToken, User.verify, async (req, res) => 
 });
 
 // get my passages
-router.get("/", auth.verifyToken, User.verify, async (req, res) => {
+router.get("/api/passages", auth.verifyToken, User.verify, async (req, res) => {
     // return passages
     try {
       let passages = await Passage.find({
@@ -73,7 +73,7 @@ router.get("/", auth.verifyToken, User.verify, async (req, res) => {
   });
 
 // Get a list of all of the passages in the database
-app.get('/api/passages', async (req, res) => {
+app.get('/api/passages/all', async (req, res) => {
     try {
         let passages = await Passage.find().sort({
             created: -1

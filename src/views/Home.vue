@@ -1,18 +1,24 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js App" />
-  </div>
+<div class="home">
+  <passage-gallery :passages="passages" />
+</div>
 </template>
 
 <script>
 // @ is an alias to /src
-import HelloWorld from "@/components/HelloWorld.vue";
-
+import PassageGallery from '@/components/PassageGallery.vue'
 export default {
-  name: "home",
+  name: 'home',
   components: {
-    HelloWorld
-  }
-};
+    PassageGallery
+  },
+  computed: {
+    passages() {
+      return this.$store.state.passages;
+    }
+  },
+  async created() {
+    await this.$store.dispatch("getAllPassages");
+  },
+}
 </script>

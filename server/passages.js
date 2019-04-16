@@ -10,8 +10,6 @@ app.use(bodyParser.urlencoded({
     extended: false
 }));
 
-app.use(express.static('public'));
-
 const users = require("./users.js");
 const User = users.model;
 
@@ -37,7 +35,7 @@ const passageSchema = new mongoose.Schema({
 const Passage = mongoose.model('Passage', passageSchema);
 
 // Create a new item in the database
-app.post('/api/passages/add',auth.verifyToken, User.verify, async (req, res) => {
+router.post('/',auth.verifyToken, User.verify, async (req, res) => {
     const passage = new Passage({
         title: req.body.title,
         passage: req.body.passage,
@@ -57,7 +55,7 @@ app.post('/api/passages/add',auth.verifyToken, User.verify, async (req, res) => 
 });
 
 // get my passages
-router.get("/api/passages", auth.verifyToken, User.verify, async (req, res) => {
+router.get("/", auth.verifyToken, User.verify, async (req, res) => {
     // return passages
     try {
       let passages = await Passage.find({
@@ -73,11 +71,12 @@ router.get("/api/passages", auth.verifyToken, User.verify, async (req, res) => {
   });
 
 // Get a list of all of the passages in the database
-app.get('/api/passages/all', async (req, res) => {
+router.get("/all", async (req, res) => {
     try {
-        let passages = await Passage.find().sort({
+        let passages = await Passage.find();
+        /*let passages = await Passage.find().sort({
             created: -1
-            }).populate('user');
+            }).populate('user');*/
         res.send(passages);
     } catch (error) {
         console.log(error);
@@ -86,7 +85,7 @@ app.get('/api/passages/all', async (req, res) => {
 });
 
 // Delete a passage from the database
-app.delete('/api/passages/:id', async (req, res) => {
+router.delete('/:id', auth.verifyToken, User.verify, async (req, res) => {
     try {
         id = req.params.id
         console.log(id);
@@ -99,7 +98,7 @@ app.delete('/api/passages/:id', async (req, res) => {
 });
 
 // Update the details of a passage in the database
-app.put('/api/passages/:id', async (req, res) => {
+router.put(':id', auth.verifyToken, User.verify, async (req, res) => {
     try {
         let passage = await Passage.findById(req.params.id);
         passage.title = req.body.title;

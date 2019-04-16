@@ -20,4 +20,10 @@ app.use(cookieParser());
 const users = require("./users.js");
 app.use("/api/users", users.routes);
 
+const passages = require("./passages.js");
+app.use("/api/passages", passages.routes);
+
+const comments = require("./comments.js");
+app.use("/api/comments", comments.routes);
+
 app.listen(3003, () => console.log('Server listening on port 3003!'));

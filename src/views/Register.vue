@@ -20,6 +20,13 @@
 
         <p v-if="error" class="error">{{ error }}</p>
 
+        <div>
+          <p>
+            Already registered? Login
+            <router-link to="/login">Here</router-link>
+          </p>
+        </div>
+
         <div class="pure-controls">
           <button type="submit" class="pure-button pure-button-primary">
             Submit

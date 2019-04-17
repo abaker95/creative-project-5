@@ -7,9 +7,6 @@
           <router-link to="/" class="pure-menu-link">Home</router-link>
         </li>
         <li class="pure-menu-item">
-          <router-link to="/about" class="pure-menu-link">About</router-link>
-        </li>
-        <li class="pure-menu-item">
           <a
             class="pure-menu-link"
             href="https://github.com/abaker95/creative-project-5"
@@ -104,7 +101,7 @@ export default {
 }
 
 .pure-menu-link:hover {
-  background: rgb(27, 72, 109); 
+  background: rgb(27, 72, 109);
 }
 
 .pure-menu-link.router-link-exact-active {
@@ -118,5 +115,11 @@ body {
 
 h1 {
   color: rgb(27, 72, 109);
+}
+
+.pure-button {
+  background-color: rgb(27, 72, 109);
+  color: white;
+  margin: 5px;
 }
 </style>

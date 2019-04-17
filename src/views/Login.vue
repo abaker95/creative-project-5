@@ -18,7 +18,7 @@
         </div>
 
         <div class="pure-controls">
-          <button type="submit" class="pure-button pure-button-primary">
+          <button type="submit" class="pure-button">
             Submit
           </button>
         </div>

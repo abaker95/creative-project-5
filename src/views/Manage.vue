@@ -2,43 +2,61 @@
   <div>
     <div v-if="user" class="header">
       <div>
-        <h2>{{ user.name }}</h2>
+        <h1>Welcome, {{ user.name }}</h1>
       </div>
-      <div class="button">
-        <button @click="toggleAdd" class="pure-button pure-button-primary">
+      <div v-if="addView === false">
+        <button @click="toggleAdd" class="pure-button">
           Add Passage
-        </button>
-        <button @click="logout" class="pure-button pure-button-primary">
-          Logout
         </button>
       </div>
       <div v-if="addView">
-        <div class="heading">
-          <h2>Add a new Passage</h2>
-        </div>
-        <div class="add">
-          <div class="form">
-            <input v-model="title" placeholder="Title" /><br />
-            <input v-model="work" placeholder="Literary Work" /><br />
-            <input v-model="author" placeholder="Author" /><br />
-            <input v-model="speaker" placeholder="Passage speaker" /><br />
-            <textarea
-              v-model="passage"
-              placeholder="Passage"
-              rows="4"
-              cols="32"
-            ></textarea>
-            <p></p>
-            <button @click="addPassage">Upload</button
-            ><button @click="cancel">Cancel</button>
+        <form
+          @submit.prevent="addPassage"
+          class="form pure-form pure-form-aligned"
+        >
+          <div class="heading">
+            <h2>Add a new Passage</h2>
           </div>
-          <p v-if="error" class="error">{{ error }}</p>
-          <div>
+          <fieldset>
+            <div class="pure-control-group">
+              <label for="title">Title</label>
+              <input v-model="title" type="text" placeholder="Title" />
+            </div>
+            <div class="pure-control-group">
+              <label for="work">Work</label>
+              <input v-model="work" type="text" placeholder="Work" />
+            </div>
+            <div class="pure-control-group">
+              <label for="author">Author</label>
+              <input v-model="author" type="text" placeholder="Author" />
+            </div>
+            <div class="pure-control-group">
+              <label for="speaker">Speaker</label>
+              <input
+                v-model="speaker"
+                type="text"
+                placeholder="Passage speaker"
+              />
+            </div>
+
+            <div class="pure-control-group">
+              <label for="passage">Passage</label>
+              <textarea v-model="passage" type="text" placeholder="Passage" />
+            </div>
+            <p v-if="error" class="error">{{ error }}</p>
             <div class="result" v-if="modified">
               Successfully added the record to the database
+              <p></p>
             </div>
-          </div>
-        </div>
+
+            <button type="submit" class="pure-button">
+              Submit
+            </button>
+            <button @click="cancel" type="button" class="pure-button">
+              Cancel
+            </button>
+          </fieldset>
+        </form>
       </div>
     </div>
     <div v-else>
@@ -105,3 +123,23 @@ export default {
   }
 };
 </script>
+
+<style>
+form {
+  border: 1px solid #ccc;
+  background-color: rgb(255, 255, 255);
+  border-radius: 4px;
+  padding: 20px;
+}
+.error {
+  color: red;
+}
+.result {
+  color: green;
+}
+input:focus,
+textarea:focus {
+  border-radius: 5px;
+  border-color: rgb(93, 178, 247);
+}
+</style>

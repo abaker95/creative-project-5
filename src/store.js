@@ -92,6 +92,14 @@ export default new Vuex.Store({
       } catch (error) {
         return "";
       }
+    },
+    async deletePassageById(context, passageId) {
+      try {
+        await axios.delete("/api/passages/" + passageId);
+        return "";
+      } catch (error) {
+        return error.response.data.message;
+      }
     }
   }
 });

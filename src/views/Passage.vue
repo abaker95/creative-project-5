@@ -1,37 +1,28 @@
 <template>
   <div>
     <h1>{{ passage.title }}</h1>
-    <p>
-      Passage uploaded by: {{ passage.user.name }} |
-      {{ formatDate(passage.created) }}
-    </p>
-    <p>Quote: {{ passage.passage }}</p>
-    <div v-if="user">
+    <div class="container">
+      <h3>"{{ passage.passage }}"</h3>
+      <p>As quoted by: {{ passage.speaker }}</p>
+      <p>In the work: {{ passage.work }}</p>
+      <p>Which was written by: {{ passage.author }}</p>
+      <p></p>
+    </div>
+    <div>
+      <p>This passage was uploaded by:</p>
+      <p>{{ passage.user.name }}</p>
+      <p>{{ formatDate(passage.created) }}</p>
+    </div>
+    <div v-if="passage.user.username === user.username">
       <div>
+        <h3>Delete this Passage?</h3>
         <p v-if="error" class="error">{{ error }}</p>
-        <form @submit.prevent="addComment">
-          <textarea
-            v-model="userComment"
-            cols="75"
-            rows="4"
-            placeholder="Your Comment"
-          ></textarea
-          ><br />
-          <button type="submit" class="pure-button pure-button-secondary">
-            Post
-          </button>
-        </form>
+        <button @click="deletePassage" class="pure-button">Delete</button>
       </div>
     </div>
     <div v-else>
-      <p>Please login to add a comment.</p>
+      <h3>Owners can login to remove</h3>
       <router-link to="/login" class="pure-button">Login</router-link>
-    </div>
-    <div class="comment" v-for="comment in comments" v-bind:key="comment._id">
-      <!--Comments Here-->
-      <hr />
-      <p>{{ comment.comment }}</p>
-      <h4>-- {{ comment.user.name }} | {{ formatDate(comment.created) }}</h4>
     </div>
   </div>
 </template>
@@ -42,9 +33,7 @@ export default {
   name: "Passage",
   data() {
     return {
-      show: false,
-      userComment: null,
-      error: null
+      show: false
     };
   },
   async created() {
@@ -52,7 +41,6 @@ export default {
     console.log("ID: " + passageId);
     await this.$store.dispatch("getUser");
     await this.$store.dispatch("getPassageById", passageId);
-    await this.$store.dispatch("getPassageComments", passageId);
     this.show = true;
   },
   computed: {
@@ -61,9 +49,6 @@ export default {
     },
     passage() {
       return this.$store.state.passage;
-    },
-    comments() {
-      return this.$store.state.comments.reverse();
     }
   },
   methods: {
@@ -72,14 +57,13 @@ export default {
         return moment(date).fromNow();
       else return moment(date).format("d MMMM YYYY");
     },
-    async addComment() {
+    async deletePassage() {
       try {
-        await this.$store.dispatch("postComment", {
-          comment: this.userComment,
-          user: this.user,
-          photo: this.photo,
-          date: Date.now()
-        });
+        this.error = await this.$store.dispatch(
+          "deletePassageById",
+          this.passage._id
+        );
+        if (this.error === "") this.$router.push("manage");
       } catch (error) {
         console.log(error);
       }
@@ -88,3 +72,11 @@ export default {
 };
 </script>
 
+<style>
+.container {
+  border: 1px solid #ccc;
+  background-color: rgb(255, 255, 255);
+  border-radius: 4px;
+  padding: 20px;
+}
+</style>

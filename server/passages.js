@@ -36,6 +36,11 @@ const Passage = mongoose.model('Passage', passageSchema);
 
 // Create a new item in the database
 router.post('/',auth.verifyToken, User.verify, async (req, res) => {
+    if (!req.body.title || !req.body.passage || !req.body.author || !req.body.work ||
+        !req.body.speaker || !req.user)
+        return res.status(400).send({
+            message: "Must fill in all parameters."
+    });
     const passage = new Passage({
         title: req.body.title,
         passage: req.body.passage,

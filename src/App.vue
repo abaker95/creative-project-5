@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <div class="pure-menu pure-menu-horizontal">
-      <div class="pure-menu-heading">BRAND</div>
+      <div class="pure-menu-heading">Quoter</div>
       <ul class="pure-menu-list">
         <li class="pure-menu-item">
           <router-link to="/" class="pure-menu-link">Home</router-link>

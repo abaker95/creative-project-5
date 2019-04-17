@@ -93,7 +93,7 @@ export default {
   color: #fff;
   font-size: 1.2em;
   padding: 10px 20px;
-  background-color: rgb(242, 183, 56);
+  background-color: rgb(27, 72, 109);
   margin-right: 2px;
 }
 
@@ -104,11 +104,19 @@ export default {
 }
 
 .pure-menu-link:hover {
-  background: #333;
+  background: rgb(27, 72, 109); 
 }
 
 .pure-menu-link.router-link-exact-active {
   background: #fff;
-  color: rgb(242, 183, 56);
+  color: rgb(27, 72, 109);
+}
+
+body {
+  background: rgb(240, 240, 240);
+}
+
+h1 {
+  color: rgb(27, 72, 109);
 }
 </style>

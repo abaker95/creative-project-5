@@ -61,7 +61,7 @@ export default {
 <style scoped>
 form {
   border: 1px solid #ccc;
-  background-color: #eee;
+  background-color: white;
   border-radius: 4px;
   padding: 20px;
 }

@@ -72,11 +72,24 @@ router.get("/", auth.verifyToken, User.verify, async (req, res) => {
 // Get a list of all of the passages in the database
 router.get("/all", async (req, res) => {
     try {
-        let passages = await Passage.find();
-        /*let passages = await Passage.find().sort({
+        //let passages = await Passage.find();
+        let passages = await Passage.find().sort({
             created: -1
-            }).populate('user');*/
+            }).populate('user');
         res.send(passages);
+    } catch (error) {
+        console.log(error);
+        res.sendStatus(500);
+    }
+});
+
+// Delete a passage from the database
+router.get('/:id', async (req, res) => {
+    try {
+        id = req.params.id
+        console.log(id);
+        let passage = await Passage.findById(id).populate('user');
+        res.send(passage);
     } catch (error) {
         console.log(error);
         res.sendStatus(500);

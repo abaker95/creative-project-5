@@ -5,7 +5,7 @@
       Passage uploaded by: {{ passage.user.name }} |
       {{ formatDate(passage.created) }}
     </p>
-    <p>Description: {{ passage.description }}</p>
+    <p>Quote: {{ passage.passage }}</p>
     <div v-if="user">
       <div>
         <p v-if="error" class="error">{{ error }}</p>
@@ -88,11 +88,3 @@ export default {
 };
 </script>
 
-<style>
-h1 {
-  color: maroon;
-}
-.comment p {
-  color: maroon;
-}
-</style>

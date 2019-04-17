@@ -1,35 +1,35 @@
 <template>
-<div>
-  <div class="passage" v-for="passage in passages" v-bind:key="passage._id">
-    <p class="passageTitle">{{passage.title}}</p>
-    <router-link :to="{ name: 'passage', params: { id: passage._id }}"></router-link>
-    <p class="passageDate">
-      <span v-if="passage.user.name">{{passage.user.name}}, </span>
-      Uploaded {{formatDate(passage.created)}}
-    </p>
-    <p>Description: {{passage.description}}</p>
+  <div>
+    <div class="passage" v-for="passage in passages" v-bind:key="passage._id">
+      <p class="passageTitle">{{ passage.title }}</p>
+      <router-link
+        :to="{ name: 'passage', params: { id: passage._id } }"
+      ></router-link>
+      <p class="passageDate">
+        <span v-if="passage.user.name">{{ passage.user.name }}, </span>
+        Uploaded {{ formatDate(passage.created) }}
+      </p>
+      <p>Description: {{ passage.description }}</p>
+    </div>
   </div>
-</div>
 </template>
 
-
 <script>
-import moment from 'moment';
-import Passage from '@/views/Passage.vue';
+import moment from "moment";
+import Passage from "@/views/Passage.vue";
 export default {
-  name: 'PassageGallery',
+  name: "PassageGallery",
   props: {
     passages: Array
   },
   methods: {
     formatDate(date) {
-      if (moment(date).diff(Date.now(), 'days') < 15)
+      if (moment(date).diff(Date.now(), "days") < 15)
         return moment(date).fromNow();
-      else
-        return moment(date).format('d MMMM YYYY');
-    },
+      else return moment(date).format("d MMMM YYYY");
+    }
   }
-}
+};
 </script>
 
 <style scoped>

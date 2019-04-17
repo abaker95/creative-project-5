@@ -3,37 +3,45 @@
     <div class="pure-menu pure-menu-horizontal">
       <div class="pure-menu-heading">BRAND</div>
       <ul class="pure-menu-list">
-          <li class="pure-menu-item">
-            <router-link to="/" class="pure-menu-link">Home</router-link>
-          </li>
-          <li class="pure-menu-item">
-            <router-link to="/about" class="pure-menu-link">About</router-link>
-          </li>
-          <li class="pure-menu-item">
-            <a class="pure-menu-link" href="https://github.com/abaker95/creative-project-5">Github</a>
-          </li>
-          <li class="pure-menu-item">
+        <li class="pure-menu-item">
+          <router-link to="/" class="pure-menu-link">Home</router-link>
+        </li>
+        <li class="pure-menu-item">
+          <router-link to="/about" class="pure-menu-link">About</router-link>
+        </li>
+        <li class="pure-menu-item">
+          <a
+            class="pure-menu-link"
+            href="https://github.com/abaker95/creative-project-5"
+            >Github</a
+          >
+        </li>
+        <li class="pure-menu-item">
           <div v-if="user">
-            <router-link to="/manage" class="pure-menu-link">Manage</router-link>
+            <router-link to="/manage" class="pure-menu-link"
+              >Manage</router-link
+            >
           </div>
-          </li>
-          <li class="pure-menu-item">
-            <div v-if="user">
-              <div @click=" logout" class="pure-menu-link">Sign Out</div>
-            </div>
-            <div v-else>
-              <router-link to="/login" class="pure-menu-link">Sign In</router-link>
-            </div>
-          </li>
+        </li>
+        <li class="pure-menu-item">
+          <div v-if="user">
+            <div @click="logout" class="pure-menu-link">Sign Out</div>
+          </div>
+          <div v-else>
+            <router-link to="/login" class="pure-menu-link"
+              >Sign In</router-link
+            >
+          </div>
+        </li>
       </ul>
-  </div>
+    </div>
     <router-view />
   </div>
 </template>
 
 <script>
-  export default {
-  name: 'home',
+export default {
+  name: "home",
   computed: {
     user() {
       return this.$store.state.user;
@@ -43,14 +51,13 @@
     async logout() {
       try {
         this.error = await this.$store.dispatch("logout");
-        if (this.error === "")
-          this.$router.push('/');
+        if (this.error === "") this.$router.push("/");
       } catch (error) {
         console.log(error);
       }
     }
   }
-}
+};
 </script>
 
 <style>
@@ -88,7 +95,6 @@
   padding: 10px 20px;
   background-color: rgb(242, 183, 56);
   margin-right: 2px;
-
 }
 
 .pure-menu-link {
@@ -103,6 +109,6 @@
 
 .pure-menu-link.router-link-exact-active {
   background: #fff;
-  color: rgb(242, 183, 56); 
+  color: rgb(242, 183, 56);
 }
 </style>

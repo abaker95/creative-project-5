@@ -42,7 +42,6 @@ router.post('/',auth.verifyToken, User.verify, async (req, res) => {
         author: req.body.author,
         work: req.body.work,
         speaker: req.body.speaker,
-        contributer: req.body.contributer,
         user:req.user
     });
     try {

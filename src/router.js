@@ -1,9 +1,9 @@
 import Vue from "vue";
 import Router from "vue-router";
-import Home from './views/Home.vue';
-import Register from './views/Register.vue';
-import Manage from './views/Manage.vue';
-import Login from './views/Login.vue';
+import Home from "./views/Home.vue";
+import Register from "./views/Register.vue";
+import Manage from "./views/Manage.vue";
+import Login from "./views/Login.vue";
 
 Vue.use(Router);
 
@@ -26,18 +26,18 @@ export default new Router({
         import(/* webpackChunkName: "about" */ "./views/About.vue")
     },
     {
-      path: '/manage',
-      name: 'manage',
-      component: Manage,
+      path: "/manage",
+      name: "manage",
+      component: Manage
     },
     {
-      path: '/register',
-      name: 'register',
+      path: "/register",
+      name: "register",
       component: Register
     },
     {
-      path: '/login',
-      name: 'login',
+      path: "/login",
+      name: "login",
       component: Login
     }
   ]

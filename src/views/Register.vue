@@ -1,45 +1,45 @@
 <template>
-<div>
-  <h1>Register for an account</h1>
-  <form @submit.prevent="register" class="pure-form pure-form-aligned">
-    <fieldset>
-      
-      <div class="pure-control-group">
-        <label for="name">Real Name</label>
-        <input v-model="name" type="text" placeholder="Real Name">
-      </div>
+  <div>
+    <h1>Register for an account</h1>
+    <form @submit.prevent="register" class="pure-form pure-form-aligned">
+      <fieldset>
+        <div class="pure-control-group">
+          <label for="name">Real Name</label>
+          <input v-model="name" type="text" placeholder="Real Name" />
+        </div>
 
-      <div class="pure-control-group">
-        <label for="username">Username</label>
-        <input v-model="username" type="text" placeholder="Username">
-      </div>
+        <div class="pure-control-group">
+          <label for="username">Username</label>
+          <input v-model="username" type="text" placeholder="Username" />
+        </div>
 
-      <div class="pure-control-group">
-        <label for="password">Password</label>
-        <input v-model="password" type="password" placeholder="Password">
-      </div>
+        <div class="pure-control-group">
+          <label for="password">Password</label>
+          <input v-model="password" type="password" placeholder="Password" />
+        </div>
 
-      <p v-if="error" class="error">{{error}}</p>
+        <p v-if="error" class="error">{{ error }}</p>
 
-      <div class="pure-controls">
-        <button type="submit" class="pure-button pure-button-primary">Submit</button>
-      </div>
-    </fieldset>
-  </form>
-  
-</div>
+        <div class="pure-controls">
+          <button type="submit" class="pure-button pure-button-primary">
+            Submit
+          </button>
+        </div>
+      </fieldset>
+    </form>
+  </div>
 </template>
 
 <script>
 export default {
-  name: 'register',
+  name: "register",
   data() {
     return {
-      name: '',
-      username: '',
-      password: '',
-      error: '',
-    }
+      name: "",
+      username: "",
+      password: "",
+      error: ""
+    };
   },
   methods: {
     async register() {
@@ -49,14 +49,13 @@ export default {
           username: this.username,
           password: this.password
         });
-        if (this.error === "")
-          this.$router.push('manage');
+        if (this.error === "") this.$router.push("manage");
       } catch (error) {
         console.log(error);
       }
     }
   }
-}
+};
 </script>
 
 <style scoped>

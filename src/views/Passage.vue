@@ -33,7 +33,8 @@ export default {
   name: "Passage",
   data() {
     return {
-      show: false
+      show: false,
+      error: null
     };
   },
   async created() {

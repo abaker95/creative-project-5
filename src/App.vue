@@ -15,6 +15,13 @@
         </li>
         <li class="pure-menu-item">
           <div v-if="user">
+            <router-link to="/mypassages" class="pure-menu-link"
+              >My Passages</router-link
+            >
+          </div>
+        </li>
+        <li class="pure-menu-item">
+          <div v-if="user">
             <router-link to="/manage" class="pure-menu-link"
               >Manage</router-link
             >

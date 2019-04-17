@@ -5,6 +5,7 @@ import Register from "./views/Register.vue";
 import Manage from "./views/Manage.vue";
 import Login from "./views/Login.vue";
 import Passage from "./views/Passage.vue";
+import MyPassages from "./views/MyPassages.vue";
 
 Vue.use(Router);
 
@@ -36,6 +37,11 @@ export default new Router({
       path: "/passage",
       name: "passage",
       component: Passage
+    },
+    {
+      path: "/mypassages",
+      name: "mypassages",
+      component: MyPassages
     }
   ]
 });

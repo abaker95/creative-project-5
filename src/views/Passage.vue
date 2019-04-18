@@ -135,8 +135,8 @@ export default {
           passageId: this.passage._id
         });
         if (this.error === "") {
-          this.modified = true;
-        }
+        this.modified = true;
+      }
       } catch (error) {
         console.log(error);
       }

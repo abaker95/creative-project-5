@@ -3,6 +3,7 @@
     <div v-if="user" class="header">
       <div>
         <h1>Welcome, {{ user.name }}</h1>
+        <p>Switch to 'MyPassages' tab to delete or edit a passage.</p>
       </div>
       <div v-if="addView === false">
         <button @click="toggleAdd" class="pure-button">

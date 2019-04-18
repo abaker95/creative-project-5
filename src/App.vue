@@ -23,7 +23,7 @@
         <li class="pure-menu-item">
           <div v-if="user">
             <router-link to="/manage" class="pure-menu-link"
-              >Manage</router-link
+              >Add</router-link
             >
           </div>
         </li>

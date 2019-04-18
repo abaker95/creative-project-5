@@ -115,14 +115,17 @@ router.delete('/:id', auth.verifyToken, User.verify, async (req, res) => {
 });
 
 // Update the details of a passage in the database
-router.put(':id', auth.verifyToken, User.verify, async (req, res) => {
+router.put('/:id', auth.verifyToken, User.verify, async (req, res) => {
+    if(!req.body.passage || !req.body.speaker) {
+        return res.status(400).send({
+        message: "Must fill in all parameters."
+        });
+    }
     try {
-        let passage = await Passage.findById(req.params.id);
-        passage.title = req.body.title;
+        
+        let passage = await Passage.findById(req.params.id).populate('user');
         passage.passage = req.body.passage;
-        passage.author = req.body.author;
-        passage.work = req.body.work;
-        passage.speaker = req.body.work;
+        passage.speaker = req.body.speaker;
         await passage.save();
         res.sendStatus(200);
     } catch (error) {

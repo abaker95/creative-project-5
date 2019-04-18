@@ -134,6 +134,9 @@ export default {
           speaker: this.newspeaker,
           passageId: this.passage._id
         });
+        if (this.error === "") {
+          this.modified = true;
+        }
       } catch (error) {
         console.log(error);
       }

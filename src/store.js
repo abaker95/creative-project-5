@@ -100,6 +100,16 @@ export default new Vuex.Store({
       } catch (error) {
         return error.response.data.message;
       }
+    },
+    async editPassageById(context, data) {
+      try {
+        console.log(data.passageId);
+        let passageId = data.passageId;
+        await axios.put("/api/passages/" + passageId, data);
+        return "";
+      } catch (error) {
+        return error.response.data.message;
+      }
     }
   }
 });
